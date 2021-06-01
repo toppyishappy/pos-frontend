@@ -7,7 +7,7 @@ export function mockProducts(amount) {
         var price = faker.finance.amount();
         var number = faker.datatype.number();
         result.push({
-            id: i, name: name, price: price, number: number, selectedAmount: 0
+            id: i, name: name, price: price, number: number, selectedAmount: 1
         })
     }
     return result;

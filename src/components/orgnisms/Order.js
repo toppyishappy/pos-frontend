@@ -14,33 +14,36 @@ function Order(props) {
 
     const handleSelect = (item) => {
         const product = item.row;
-        var indexTemp = 0;
         setSelectedList([...selectedList, product]);
         selectedList.forEach((i, index) => {
             if (i.id === product.id) {
                 let temp = selectedList[index];
-                const newValue = { ...temp, selectedAmount: temp.selectedAmount += 1 }
+                const newValue = { ...temp, selectedAmount: temp.selectedAmount += 1 };
                 selectedList[index] = newValue;
                 setSelectedList(selectedList);
             }
-            setTrig(!trig)
+            setTrig(!trig);
         })
     }
     function addItem(e, index) {
 		e.preventDefault();
 		let temp = selectedList[index];
-        const newValue = { ...temp, selectedAmount: temp.selectedAmount += 1 }
+        const newValue = { ...temp, selectedAmount: temp.selectedAmount += 1 };
         selectedList[index] = newValue;
         setSelectedList(selectedList);
-        setTrig(!trig)
+        setTrig(!trig);
     }
     function removeItem(e, index) {
-		e.preventDefault();
-		let temp = selectedList[index];
-        const newValue = { ...temp, selectedAmount: temp.selectedAmount -= 1 }
-        selectedList[index] = newValue;
+        e.preventDefault();
+        let temp = selectedList[index];
+        if (temp.selectedAmount <= 1) {
+            selectedList.splice(index, 1);
+        } else {
+            const newValue = { ...temp, selectedAmount: temp.selectedAmount -= 1 };
+            selectedList[index] = newValue;
+        }
         setSelectedList(selectedList);
-        setTrig(!trig)
+        setTrig(!trig);
 	}
     return (
         <Container>
